@@ -30,8 +30,8 @@ Feature: verifyProductArrangeInAlphabeticalOrder
     Examples:
       | product      | model     | price  |
       | HTC Touch HD | Product 1 | £74.73 |
-#      | iPhone       | Product 11 | £75.46  |
-#      | iPod Classic | Product 20 | £74.73  |
-#      | MacBook      | Product 16 | £368.73 |
-#      | MacBook Air  | Product 17 | £736.23 |
-#      | Sony VAIO    | Product 19 | £736.23 |
+      | iPhone       | Product 11 | £75.46  |
+      | iPod Classic | Product 20 | £74.73  |
+      | MacBook      | Product 16 | £368.73 |
+      | MacBook Air  | Product 17 | £736.23 |
+      | Sony VAIO    | Product 19 | £736.23 |
