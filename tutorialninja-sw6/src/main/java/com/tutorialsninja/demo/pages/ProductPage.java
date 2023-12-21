@@ -16,7 +16,11 @@ public class ProductPage extends Utility {
     List<WebElement> productList;
 
     @CacheLookup
-    @FindBy(linkText= "MacBook")
+    @FindBy(css = "div[id='content'] h1")
+    WebElement productWelcomeText;
+
+    @CacheLookup
+    @FindBy(linkText = "MacBook")
     WebElement productText;
 
     @CacheLookup
@@ -24,18 +28,18 @@ public class ProductPage extends Utility {
     WebElement addToCartButton;
 
     @CacheLookup
-            @FindBy(css = "body:nth-child(2) div.container:nth-child(4) > div.alert.alert-success.alert-dismissible")
+    @FindBy(css = "body:nth-child(2) div.container:nth-child(4) > div.alert.alert-success.alert-dismissible")
     WebElement successMessage;
     @CacheLookup
     @FindBy(xpath = "//a[contains(text(),'shopping cart')]")
     WebElement shoppingCartLink;
 
     @CacheLookup
-    @FindBy(xpath ="//div[@id='content']//h1")
+    @FindBy(xpath = "//div[@id='content']//h1")
     WebElement shoppingCartText;
 
     @CacheLookup
-    @FindBy(xpath ="//input[contains(@name, 'quantity')]")
+    @FindBy(xpath = "//input[contains(@name, 'quantity')]")
     WebElement qtyField;
 
     @CacheLookup
@@ -117,147 +121,200 @@ public class ProductPage extends Utility {
     @FindBy(tagName = "textarea")
     WebElement textArea;
 
+    @CacheLookup
+    @FindBy(id = "button-cart")
+    WebElement addToCart;
+
+    @CacheLookup
+    @FindBy(id = "input-quantity")
+    WebElement quantity;
+
+    @CacheLookup
+    @FindBy(css = ".alert.alert-success.alert-dismissible")
+    WebElement alertSuccessMessage;
+
+
+    @CacheLookup
+    @FindBy(linkText = "shopping cart")
+    WebElement shoppingCart;
+
     public void selectProductByName(String product) {
-      //  List<WebElement> products = new ArrayList<>();
+        //  List<WebElement> products = new ArrayList<>();
         for (WebElement e : productList) {
             if (e.getText().equals(product)) {
                 e.click();
-                log.info("Product by name:"+productList);
+                log.info("Product by name:" + productList);
                 break;
             }
         }
     }
 
+    public void enterQuantity(String quantitySize){
+        quantity.clear();
+        sendTextToElement(quantity,quantitySize);
+        log.info("Enter Quantity : " + quantity.toString());
+
+    }
+
     public String getProductText() {
-        log.info("Macbook Text verified:"+productText);
+        log.info("Macbook Text verified:" + productText);
         return getTextFromElement(productText);
     }
 
     public void clickOnAddToCartButton(String addToCart) {
-        log.info("Add to cart button:"+addToCartButton);
+        log.info("Add to cart button:" + addToCartButton);
         clickOnElement(addToCartButton);
     }
+
     public String getProductAddedSuccessMessage(String addMsg) {
-        log.info("product sucess msg:"+successMessage);
+        log.info("product sucess msg:" + successMessage);
         return getTextFromElement(successMessage);
     }
+
+    public String getProductWelcomeText(){
+        log.info("Verify Product name : " + productWelcomeText.toString());
+        return getTextFromElement(productWelcomeText);
+    }
+
     public void clickOnShoppingCartLinkIntoMessage(String shoppingcartlink) {
-        log.info("Shopping cart link click:"+shoppingCartLink);
+        log.info("Shopping cart link click:" + shoppingCartLink);
         clickOnElement(shoppingCartLink);
     }
+
     public String getShoppingCartText(String shoppingcartText) {
-        log.info("Shopping cart Text verified:"+shoppingCartLink);
+        log.info("Shopping cart Text verified:" + shoppingCartLink);
         return getTextFromElement(shoppingCartText);
     }
+
+    public void clickOnAddToCart(){
+        clickOnElement(addToCart);
+        log.info("Click on Add TO cart : " + addToCart.toString());
+
+    }
+
     public void changeQuantity(String qty) {
-        log.info("Quantity:"+qtyField);
+        log.info("Quantity:" + qtyField);
         sendTextToElement(qtyField, qty);
     }
 
     public void clickOnQtyUpdateButton(String quantityButton) {
-        log.info("Click Update btn"+qtyUpdateBtn);
+        log.info("Click Update btn" + qtyUpdateBtn);
         clickOnElement(qtyUpdateBtn);
     }
+
     public String getSuccessModifiedMessage() {
-        log.info("Success modified msg:"+successModifiedMessage);
+        log.info("Success modified msg:" + successModifiedMessage);
         return getTextFromElement(successModifiedMessage);
     }
+
     public String getTotal() {
-        log.info("get Total:"+total);
+        log.info("get Total:" + total);
         return getTextFromElement(total);
     }
-    public void clickCheckout(String checkout){
-        log.info("Checkout button click:"+checkoutLink);
+
+    public void clickCheckout(String checkout) {
+        log.info("Checkout button click:" + checkoutLink);
         clickOnElement(checkoutLink);
     }
-    public String getCheckoutText(){
-        log.info("Checkout Text verified"+checkoutText);
+
+    public String getCheckoutText() {
+        log.info("Checkout Text verified" + checkoutText);
         return getTextFromElement(checkoutText);
     }
-    public String getNewCustomerText(){
-        log.info("Checkout get new customer:"+newCustomerText);
+
+    public String getSuccessMessage(){
+        log.info("Verify Success Message : " + alertSuccessMessage.toString());
+        return getTextFromElement(alertSuccessMessage);
+    }
+
+    public String getNewCustomerText() {
+        log.info("Checkout get new customer:" + newCustomerText);
         return getTextFromElement(newCustomerText);
     }
 
-    public void clickOnGuestCheckoutButton(){
-        log.info("guest :"+guestCheckoutButton);
+    public void clickOnGuestCheckoutButton() {
+        log.info("guest :" + guestCheckoutButton);
         clickOnElement(guestCheckoutButton);
     }
 
-    public void clickOnContinueButton(){
-        log.info("Continue button:"+continueLink);
+    public void clickOnContinueButton() {
+        log.info("Continue button:" + continueLink);
         clickOnElement(continueLink);
     }
 
 
-
     public void enterFirstname() {
-        log.info("enter First Name:"+firstName);
+        log.info("enter First Name:" + firstName);
         sendTextToElement(firstName, "William");
     }
 
     public void enterLastName() {
-        log.info("enter lastname:"+lastName);
+        log.info("enter lastname:" + lastName);
         sendTextToElement(lastName, "Brooks");
     }
 
     public void enterEmail() {
-        log.info("enter emailid:"+email);
+        log.info("enter emailid:" + email);
         sendTextToElement(email, "brooks123@gmail.com");
     }
 
     public void enterTelephone() {
-        log.info("enter Telephone:"+lastName);
+        log.info("enter Telephone:" + lastName);
         sendTextToElement(telephone, "8765123098");
     }
 
     public void enterAddress() {
-    log.info("enter Address:"+address);
+        log.info("enter Address:" + address);
         sendTextToElement(address, "Watford Road");
     }
 
     public void enterCity() {
-        log.info("enter city:"+city);
+        log.info("enter city:" + city);
         sendTextToElement(city, "London");
     }
 
     public void enterPostcode() {
-        log.info("enter city:"+postcode);
+        log.info("enter city:" + postcode);
         sendTextToElement(postcode, "Ha5tyu");
     }
 
     public void enterCountry() {
-        log.info("enter city:"+country);
+        log.info("enter city:" + country);
         sendTextToElement(country, "United Kingdom");
     }
 
     public void enterState() {
-        log.info("enter city:"+state);
+        log.info("enter city:" + state);
         sendTextToElement(state, "Harrow");
     }
 
     public void clickContinueButtonguest() {
-        log.info("Click continue button:"+continueButtonguest);
+        log.info("Click continue button:" + continueButtonguest);
         clickOnElement(continueButtonguest);
     }
 
     public void enterCommentInTextAea() {
-    log.info("enter comment in Text Area:"+textArea);
+        log.info("enter comment in Text Area:" + textArea);
         sendTextToElement(textArea, "Thank You!");
     }
 
     public void checkTermsAndCondtionCheckBox() {
-    log.info("Condition checkbox:"+termsandCondition);
+        log.info("Condition checkbox:" + termsandCondition);
         clickOnElement(termsandCondition);
     }
 
     public void clickContinueButtonpayment() {
-   log.info("Continue button payment"+continueButtonpayment);
+        log.info("Continue button payment" + continueButtonpayment);
         clickOnElement(continueButtonpayment);
     }
 
     public String GetWarningMessageText() {
-    log.info("Warning Message Text:"+warningMessageText);
+        log.info("Warning Message Text:" + warningMessageText);
         return getTextFromElement(warningMessageText);
+    }
+
+    public void clickOnShoppingCart(){
+        clickOnElement(shoppingCart);
+        log.info("Click on Shopping cart : " + shoppingCart.toString());
     }
 }
