@@ -1,12 +1,15 @@
+@regression
 Feature: verifyProductArrangeInAlphabeticalOrder
 
-#  Scenario: verify Product Arrange In Alphabetical Order
-#    Given I am On Homepage
-#    When Mouse hover on "Desktops" Tab and click
-#    And Click on "Show AllDesktops"
-#    And Select Sort By position "Name (Z - A)"
-#    Then Verify the Product will arrange in Descending order
+  @author_Jignasha @sanity @smoke
+  Scenario: verify Product Arrange In Alphabetical Order
+    Given I am On Homepage
+    When Mouse hover on "Desktops" Tab and click
+    And Click on "Show AllDesktops"
+    And Select Sort By position "Name (Z - A)"
+    Then Verify the Product will arrange in Descending order
 
+  @author_Jignasha @sanity
   Scenario Outline: Verify Product Added To Shopping Cart SuccessFully
     Given I am On Homepage
     When Mouse hover on Currency Dropdown and click
@@ -25,8 +28,8 @@ Feature: verifyProductArrangeInAlphabeticalOrder
     And Verify the Model "<model>"
     Then Verify the price Total "<price>"
     Examples:
-      | product      | model      | price   |
-      | HTC Touch HD | Product 1  | £74.73  |
+      | product      | model     | price  |
+      | HTC Touch HD | Product 1 | £74.73 |
 #      | iPhone       | Product 11 | £75.46  |
 #      | iPod Classic | Product 20 | £74.73  |
 #      | MacBook      | Product 16 | £368.73 |
